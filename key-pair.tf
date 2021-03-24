@@ -1,0 +1,4 @@
+resource "openstack_compute_keypair_v2" "keypair" {
+  name = "keypair"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDnfASYKOdgKXiXKHf2jykODPc99knXfOxnkwBP+eDCXXxIl3tGpNjY3X8nJ2qQEoddYEDm/xSPmnBUgRIuQX8G4Kgu2x0N88DsP6LPwr8kU6oI8FRn2MWeE6rVrIIvMRkgVPjk8eWwnfGquvEhwOogVs/3NLCnAKyRhM9DJcYFSHbJy7oURje89mAsjvJf8gaSUFtKwUzZv4/0Qyr10s/ykr6P+9LBucIOAscPM6qHw4VLbzXHyuwGhMjySu9CzDIPJoOtwkLqqZZ0RZGlv+jCkV9XoW1VYhz3305winMrE0vtja4y1CzKdp6xmOU6jNWn/ZeSkj9zatoNwsuIJkBP Generated-by-Nova"
+}
