@@ -14,6 +14,6 @@ provider "openstack" {
   user_name   = "admin"
   tenant_name = "admin"
   password    = "nomoresecret"
-  auth_url    = "http://192.168.122.22/identity"
+  auth_url    = "http://192.168.122.19/identity"
   region      = "RegionOne"
 }
