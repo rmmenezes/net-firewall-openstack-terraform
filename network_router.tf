@@ -3,7 +3,7 @@
 resource "openstack_networking_router_v2" "router" {
   name                = "router"
   admin_state_up      = true
-#   external_network_id = "738ae82f-3108-45cf-b560-838d85d8b9ff" #ID-PUBLIC-NET
+  # external_network_id = "f2e717c1-bd23-44c0-a9bc-3b537bba9c3e" #ID-PUBLIC-NET
 }
 
 resource "openstack_networking_router_interface_v2" "interface_network01" {
