@@ -16,12 +16,12 @@ resource "openstack_compute_instance_v2" "DebianE" {
   
   network {
     name = openstack_networking_network_v2.network01.name
-    fixed_ip_v4 = "10.20.30.4"
+    fixed_ip_v4 = "10.20.30.5"
   }
 
   network {
     name = openstack_networking_network_v2.network02.name
-    fixed_ip_v4 = "172.157.155.4"
+    fixed_ip_v4 = "172.157.155.5"
   }
 }
 

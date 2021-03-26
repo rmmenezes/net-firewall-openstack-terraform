@@ -4,7 +4,6 @@ resource "openstack_compute_instance_v2" "DebianA" {
   flavor_name = openstack_compute_flavor_v2.debian_flavor.name
   security_groups = [openstack_compute_secgroup_v2.ssh.id, openstack_compute_secgroup_v2.icmp.id]
   key_pair  = openstack_compute_keypair_v2.keypair.name
-  # image_id = "f841047a-dfe5-46dd-a916-3870bb1ba265"
 
   # Install system in volume
   block_device {
@@ -17,6 +16,6 @@ resource "openstack_compute_instance_v2" "DebianA" {
 
   network {
     name = openstack_networking_network_v2.network01.name
-    fixed_ip_v4 = "10.20.30.2"
+    fixed_ip_v4 = "10.20.30.3"
   }
 }
