@@ -5,17 +5,24 @@ resource "openstack_compute_instance_v2" "DebianA" {
   security_groups = [openstack_compute_secgroup_v2.ssh.id, openstack_compute_secgroup_v2.icmp.id]
   key_pair  = openstack_compute_keypair_v2.keypair.name
 
-  # Install system in volume
+ # Install system in volume
   block_device {
-    volume_size           = 20
+    uuid                  = openstack_blockstorage_volume_v3.debian_A_volume.id
     destination_type      = "volume"
+    source_type           = "volume"
+    boot_index            = 0
     delete_on_termination = true
-    source_type           = "image"
-    uuid                  = "f841047a-dfe5-46dd-a916-3870bb1ba265"
   }
 
   network {
     name = openstack_networking_network_v2.network01.name
     fixed_ip_v4 = "10.20.30.3"
   }
+}
+
+resource "openstack_blockstorage_volume_v3" "debian_A_volume" {
+  name        = "debian_A_volume"
+  image_id    = openstack_images_image_v2.Debian.id
+  region      = "RegionOne"
+  size        = 50
 }
