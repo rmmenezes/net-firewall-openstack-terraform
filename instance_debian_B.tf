@@ -2,7 +2,7 @@
 resource "openstack_compute_instance_v2" "DebianB" {
   name        = "DebianB"
   flavor_name = openstack_compute_flavor_v2.debian_flavor.name
-  security_groups = [openstack_compute_secgroup_v2.ssh.id, openstack_compute_secgroup_v2.icmp.id]
+  # security_groups = [openstack_compute_secgroup_v2.ssh.id, openstack_compute_secgroup_v2.icmp.id]
   key_pair  = openstack_compute_keypair_v2.keypair.name
 
  # Install system in volume
@@ -15,8 +15,7 @@ resource "openstack_compute_instance_v2" "DebianB" {
   }
 
   network {
-    name = openstack_networking_network_v2.network01.name
-    fixed_ip_v4 = "10.20.30.4"
+    port = openstack_networking_port_v2.port_network01_DebianB.id
   }
 }
 
@@ -25,6 +24,20 @@ resource "openstack_blockstorage_volume_v3" "debian_B_volume" {
   name        = "debian_B_volume"
   image_id    = openstack_images_image_v2.Debian.id
   region      = "RegionOne"
-  size        = 50
+  size        = 100
   enable_online_resize = true
+}
+
+resource "openstack_networking_port_v2" "port_network01_DebianB" {
+  name               = "port_network01_DebianB"
+  network_id         = openstack_networking_network_v2.network01.id
+  admin_state_up     = true
+  # security_group_ids = [openstack_compute_secgroup_v2.ssh.id, openstack_compute_secgroup_v2.icmp.id]
+  port_security_enabled = false
+
+
+  fixed_ip {
+    subnet_id  = openstack_networking_subnet_v2.subnet_network01.id
+    ip_address = "10.20.30.4"
+  }
 }

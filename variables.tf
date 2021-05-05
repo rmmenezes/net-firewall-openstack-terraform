@@ -1,7 +1,7 @@
 # Image path QCOW2 Ubuntu
 variable "imageUbuntuPath" {
   type    = string
-  default = "images/mini.iso.qcow2"
+  default = "images/ubuntu-16.04.7-server-amd64.iso.qcow2"
 }
 
 # Image path QCOW2 Debian
@@ -14,5 +14,5 @@ variable "imageDebianPath" {
 # UUID of external gateway
 variable "external_gateway" {
   type    = string
-  default = "9ee4ed16-f5a1-4b97-8a0c-796647a91b6e"
+  default = "e65c793c-419b-498f-85c0-3ff0e98843fb"
 }
