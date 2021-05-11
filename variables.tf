@@ -10,7 +10,6 @@ variable "imageDebianPath" {
   default = "images/debian-9.13.0-amd64-netinst.iso.qcow2"
 }
 
-
 # UUID of external gateway
 variable "external_gateway" {
   type    = string

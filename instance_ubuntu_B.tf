@@ -23,7 +23,7 @@ resource "openstack_blockstorage_volume_v3" "ubuntu_B_volume" {
   name        = "ubuntu_B_volume"
   image_id    = openstack_images_image_v2.Ubuntu.id
   region      = "RegionOne"
-  size        = 100
+  size        = 25
   enable_online_resize = true
 }
 

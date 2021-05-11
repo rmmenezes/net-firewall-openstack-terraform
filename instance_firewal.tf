@@ -15,8 +15,10 @@ resource "openstack_compute_instance_v2" "firewall" {
     delete_on_termination = true
   }
 
+  network {
+    port = openstack_networking_port_v2.port_control_network_Firewall.id
+  }
 
-  
   network {
     port = openstack_networking_port_v2.port_network01_Firewall.id
   }
@@ -24,7 +26,8 @@ resource "openstack_compute_instance_v2" "firewall" {
   network {
     port = openstack_networking_port_v2.port_network02_Firewall.id
   }
- 
+
+
 }
 
 
@@ -32,7 +35,7 @@ resource "openstack_blockstorage_volume_v3" "firewall_volume" {
   name        = "firewall_volume"
   image_id    = openstack_images_image_v2.Debian.id
   region      = "RegionOne"
-  size        = 100
+  size        = 20
   enable_online_resize = true
 }
 
@@ -64,4 +67,38 @@ resource "openstack_networking_port_v2" "port_network02_Firewall" {
 }
 
 
+resource "openstack_networking_port_v2" "port_control_network_Firewall" {
+  name               = "port_control_network_Firewall"
+  network_id         = openstack_networking_network_v2.control_network.id
+  admin_state_up     = true
+  # security_group_ids = [openstack_compute_secgroup_v2.ssh.id, openstack_compute_secgroup_v2.icmp.id]
+  port_security_enabled = false
 
+   fixed_ip {
+    subnet_id  = openstack_networking_subnet_v2.subnet_control_network.id
+  }
+}
+
+resource "openstack_networking_floatingip_v2" "ipfHost" {
+  pool = "public"
+}
+
+resource "openstack_compute_floatingip_associate_v2" "ipfHost" {
+  floating_ip = openstack_networking_floatingip_v2.ipfHost.address
+  instance_id = openstack_compute_instance_v2.firewall.id
+}
+
+resource "null_resource" "provision" {
+  depends_on = [openstack_compute_floatingip_associate_v2.ipfHost, openstack_compute_instance_v2.firewall]
+  connection {
+      user     = "debian"
+      password = "password"
+      host = openstack_networking_floatingip_v2.ipfHost.address
+    }
+
+  provisioner "remote-exec" {
+    inline = [
+      "echo ola"
+    ]
+  }
+}
