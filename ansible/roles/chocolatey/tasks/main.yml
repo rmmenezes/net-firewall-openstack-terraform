@@ -1,9 +1,0 @@
----
-
-- name: Install chocolatey inside Windows Host
-  win_chocolatey:
-      name:
-      - chocolatey
-      - chocolatey-core.extension
-      state: present
-  when: ansible_os_family == 'Windows'
