@@ -98,7 +98,7 @@ resource "null_resource" "provision" {
 
   provisioner "remote-exec" {
     inline = [
-      "echo ola"
+      "echo 'ip a' > /home/debian/file.txt"
     ]
   }
 }
