@@ -1,0 +1,21 @@
+---
+- name: Install Google Chrome on Linux (APT)
+  apt:
+    deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  become: yes
+  when: ansible_os_family == 'Debian'
+
+- name: Install Google Chrome on Linux (YUM)
+  yum:
+    name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+    state: present
+  become: yes
+  when: ansible_os_family == 'RedHat'
+
+- name: Install Google Chrome on Windows
+  win_chocolatey:
+    name: googlechrome 
+    version: '88.0.4324.182'
+    state: present
+    ignore_checksums: yes
+  when: ansible_os_family == 'Windows'

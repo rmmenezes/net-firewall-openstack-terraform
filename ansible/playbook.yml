@@ -1,0 +1,5 @@
+---
+
+# Playbook para hosts Windows da Infra.
+- hosts: Debian
+  roles: 

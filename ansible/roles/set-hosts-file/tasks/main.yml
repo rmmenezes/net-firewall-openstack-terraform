@@ -1,0 +1,7 @@
+---
+
+- name: Copia o arqui de hosts local para dentro do alvo
+  copy:
+    src: '../hosts'
+    dest: '/etc/hosts'
+  become: yes

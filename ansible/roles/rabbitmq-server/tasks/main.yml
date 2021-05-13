@@ -1,0 +1,21 @@
+---
+
+- name: Instala rabbitmq-server (Debian)
+  apt:
+    name: rabbitmq-server
+    state: present
+  become: yes
+  notify:
+    - enable rabbitmq
+    - start rabbitmq
+  when: ansible_os_family == 'Debian'
+
+- name: Instala rabbitmq-server (CentOS)
+  yum:
+    name: rabbitmq-server
+    state: present
+  notify:
+    - enable rabbitmq
+    - start rabbitmq
+  become: yes
+  when: ansible_os_family == 'RedHat'

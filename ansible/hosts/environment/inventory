@@ -1,0 +1,11 @@
+RouterFirewall ansible_ssh_host=172.29.249.177
+
+
+[Debian]
+RouterFirewall
+
+[Debian:vars]
+ansible_connection=ssh
+ansible_ssh_user=debian 
+ansible_ssh_pass=password 
+ansible_sudo_pass=password
