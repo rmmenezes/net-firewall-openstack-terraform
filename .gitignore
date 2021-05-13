@@ -1,2 +1,2 @@
-images/*.qcow2
-images/*.iso
+terraform/images/*.qcow2
+terraform/images/*.iso

@@ -1,0 +1,15 @@
+---
+
+- name: Instala Git (Debian)
+  apt:
+    name: git
+    state: present
+  become: yes
+  when: ansible_os_family == 'Debian'
+
+- name: Instala Git (CentOS)
+  yum:
+    name: git
+    state: present
+  become: yes
+  when: ansible_os_family == 'RedHat'

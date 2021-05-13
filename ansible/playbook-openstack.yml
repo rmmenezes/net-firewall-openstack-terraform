@@ -1,0 +1,8 @@
+---
+
+# Playbook para hosts Windows da Linux (CentOS).
+- hosts: OpenStack
+  roles: 
+    - git
+    - update-upgrade
+    - openstack-server

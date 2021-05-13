@@ -1,0 +1,5 @@
+---
+
+- name: Indica o hostname para a VM.
+  shell: sudo hostnamectl set-hostname {{ hostname }}
+  become: yes

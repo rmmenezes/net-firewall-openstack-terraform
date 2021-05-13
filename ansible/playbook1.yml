@@ -1,0 +1,19 @@
+---
+
+# Playbook para hosts Windows da Infra.
+- hosts: Windows
+  roles: 
+    - chocolatey
+    - google_chrome
+
+# Playbook para hosts Windows da Linux (Debian).
+- hosts: Linux
+  roles: 
+    - apache2
+    - google_chrome
+
+# Playbook para hosts Windows da Linux (CentOS).
+- hosts: LinuxCentOS
+  roles: 
+    - apache2
+    - google_chrome

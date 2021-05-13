@@ -88,17 +88,17 @@ resource "openstack_compute_floatingip_associate_v2" "ipfHost" {
   instance_id = openstack_compute_instance_v2.firewall.id
 }
 
-resource "null_resource" "provision" {
-  depends_on = [openstack_compute_floatingip_associate_v2.ipfHost, openstack_compute_instance_v2.firewall]
-  connection {
-      user     = "debian"
-      password = "password"
-      host = openstack_networking_floatingip_v2.ipfHost.address
-    }
+# resource "null_resource" "provision" {
+#   depends_on = [openstack_compute_floatingip_associate_v2.ipfHost, openstack_compute_instance_v2.firewall]
+#   connection {
+#       user     = "debian"
+#       password = "password"
+#       host = openstack_networking_floatingip_v2.ipfHost.address
+#     }
 
-  provisioner "remote-exec" {
-    inline = [
-      "echo 'ip a' > /home/debian/file.txt"
-    ]
-  }
-}
+#   provisioner "remote-exec" {
+#     inline = [
+#       "echo ola > rafael"
+#     ]
+#   }
+# }

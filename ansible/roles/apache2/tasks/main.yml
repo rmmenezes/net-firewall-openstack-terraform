@@ -1,0 +1,33 @@
+---
+
+- name: 'Instala Apache2 on Linux (Debian)'
+  apt:
+    name: apache2
+    state: latest
+  become: yes
+  when: ansible_os_family == 'Debian'
+
+- name: Instala Apache2 on Linux (CentOS)
+  yum:
+    name: httpd
+    state: latest
+  become: yes
+  when: ansible_os_family == 'RedHat'
+
+- name: Transfere o conteudo da pasta www para dentro do diretorio apache2 (Debian)
+  copy:
+    src: '../www/html/'
+    dest: '/var/www/html/'
+  notify:
+    - restart apache
+  become: yes
+  when: ansible_os_family == 'Debian'
+
+- name: Transfere o conteudo da pasta www para dentro do diretorio apache2 (CentOS)
+  copy:
+    src: '../www/html/'
+    dest: '/var/www/html/'
+  notify:
+    - restart httpd
+  become: yes
+  when: ansible_os_family == 'RedHat'

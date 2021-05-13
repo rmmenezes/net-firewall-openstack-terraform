@@ -1,0 +1,14 @@
+---
+
+- name: Update all packages (Debian)
+  apt:
+    upgrade: dist
+  become: true
+  when: ansible_os_family == 'Debian'
+
+- name: Upgrade all packages (CentOS)
+  yum:
+    name: '*'
+    state: latest
+  become: true
+  when: ansible_os_family == 'RedHat'
